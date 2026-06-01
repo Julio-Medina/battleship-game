@@ -1,0 +1,10 @@
+[project]
+name = "battleship-heuristic-ai"
+version = "0.1.0"
+description = "A modernized Battleship game with a classical rule-based heuristic AI."
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
