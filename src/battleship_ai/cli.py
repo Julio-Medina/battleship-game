@@ -2,6 +2,7 @@ from typing import Tuple
 
 from battleship_ai.board import ShotResult
 from battleship_ai.game import Game
+from battleship_ai.render import render_board
 
 
 def format_result(result: ShotResult) -> str:
@@ -26,6 +27,15 @@ def parse_shot(raw: str) -> Tuple[int, int]:
     return x, y
 
 
+def print_boards(game: Game) -> None:
+    print("Your board")
+    print(render_board(game.player_board, reveal_ships=True))
+    print()
+    print("Enemy board")
+    print(render_board(game.ai_board, reveal_ships=False))
+    print()
+
+
 def main() -> None:
     game = Game(seed=None)
     game.place_default_ships()
@@ -35,6 +45,8 @@ def main() -> None:
     print("Type q to quit.\n")
 
     while not game.player_won and not game.ai_won:
+        print_boards(game)
+
         raw = input("Your shot: ").strip()
 
         if raw.lower() in {"q", "quit", "exit"}:
@@ -45,7 +57,7 @@ def main() -> None:
             x, y = parse_shot(raw)
             player_result = game.player_shoots(x, y)
         except ValueError as exc:
-            print(f"Invalid input: {exc}")
+            print(f"Invalid input: {exc}\n")
             continue
 
         print(f"You fired at ({x}, {y}): {format_result(player_result)}")
