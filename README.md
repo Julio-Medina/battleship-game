@@ -59,3 +59,53 @@ This makes the bot a simple example of classical AI based on rules, state, and l
 ## Status
 
 This repository is currently in the preservation and refactoring stage.
+
+## Running the Modern Version
+
+The modernized version lives inside the src/battleship_ai/ package.
+
+Run the terminal game with:
+
+    PYTHONPATH=src python3 -m battleship_ai.cli
+
+Enter shots using this format:
+
+    x,y
+
+Example:
+
+    4,7
+
+To quit the game, type:
+
+    q
+
+## Running the Tests
+
+Install pytest if needed:
+
+    python3 -m pip install pytest
+
+Run the test suite:
+
+    pytest -q
+
+## Current Architecture
+
+The modern code is organized as follows:
+
+    src/battleship_ai/
+    ├── ship.py      # Ship model and hit tracking
+    ├── board.py     # Board state, ship placement, and shot resolution
+    ├── ai.py        # Rule-based heuristic AI
+    ├── game.py      # Game coordinator between player and AI boards
+    └── cli.py       # Playable terminal interface
+
+## Development Branch
+
+Active modernization work is happening on:
+
+    refactor/python3-core
+
+The main branch preserves the stable repository history while the refactor is developed incrementally.
+
